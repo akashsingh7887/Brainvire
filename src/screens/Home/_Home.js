@@ -4,7 +4,7 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
 import styles from './styles';
 
-class Login extends Component {
+class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -14,4 +14,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default Home;

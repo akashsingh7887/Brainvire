@@ -27,7 +27,7 @@ export default (styles = StyleSheet.create({
   button: {
     backgroundColor: colors.blue,
     flex: 0.08,
-    width: '100%',
+    width: globals.deviceWidth,
     alignItems: 'center',
     justifyContent: 'center',
   },

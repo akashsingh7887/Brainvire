@@ -1,5 +1,12 @@
 import React, {Component} from 'react';
-import {Text, View, Image, SafeAreaView,TouchableOpacity} from 'react-native';
+import {
+  Text,
+  View,
+  Image,
+  SafeAreaView,
+  TouchableOpacity,
+  StatusBar,
+} from 'react-native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
 // import Carousel, {Pagination} from 'react-native-snap-carousel';
@@ -26,55 +33,55 @@ class Welcome extends Component {
 
   render() {
     return (
-      <SafeAreaView style={styles.container}>
-        <View style={styles.carousel}>
-          <ImageSlider
-            style={styles.image_slider}
-            loopBothSides
-            autoPlayWithInterval={2000}
-            images={this.state.images}
-            customButtons={(position, move) => {
-              return (
-                <View style={styles.pagination_slider}>
-                  {this.state.images.map((image, index) => {
-                    return (
-                      <View
-                        key={index}
-                        style={
-                          position == index
-                            ? styles.active_dot_slider
-                            : styles.inactive_dot_slider
-                        }
-                      />
-                    );
-                  })}
-                </View>
-              );
-            }}
-          />
-        </View>
+      <View style={styles.container}>
+        <StatusBar hidden={true} />
+        <SafeAreaView style={styles.container}>
+          <View style={styles.carousel}>
+            <ImageSlider
+              style={styles.image_slider}
+              loopBothSides
+              autoPlayWithInterval={2000}
+              images={this.state.images}
+              customButtons={(position, move) => {
+                return (
+                  <View style={styles.pagination_slider}>
+                    {this.state.images.map((image, index) => {
+                      return (
+                        <View
+                          key={index}
+                          style={
+                            position == index
+                              ? styles.active_dot_slider
+                              : styles.inactive_dot_slider
+                          }
+                        />
+                      );
+                    })}
+                  </View>
+                );
+              }}
+            />
+          </View>
 
-        <View style={styles.pagination_view}>
-          <_Text style={styles.welcome_text}>
-            Welcome to{' '}
-            <_Text
-              style={styles.bold_text}>
-              Shop Cart
+          <View style={styles.pagination_view}>
+            <_Text style={styles.welcome_text}>
+              Welcome to <_Text style={styles.bold_text}>Shop Cart</_Text>
             </_Text>
-          </_Text>
-          <View style={styles.green_seperator} />
-          <_Text style={styles.decpt_text}>
-            Each online store has its own bag. But if you want to go at multiple
-            store, you can have only one.
-          </_Text>
-        </View>
-        <Button style={styles.button} buttonTextStyle={styles.buttonTextStyle}
-        onPress={()=>this.props.navigation.navigate("Login")}
-        >
-          {' '}
-          GET STARTED
-        </Button>
-      </SafeAreaView>
+            <View style={styles.green_seperator} />
+            <_Text style={styles.decpt_text}>
+              Each online store has its own bag. But if you want to go at
+              multiple store, you can have only one.
+            </_Text>
+          </View>
+          <Button
+            style={styles.button}
+            buttonTextStyle={styles.buttonTextStyle}
+            onPress={() => this.props.navigation.navigate('Login')}>
+            {' '}
+            GET STARTED
+          </Button>
+        </SafeAreaView>
+      </View>
     );
   }
 }

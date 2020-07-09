@@ -4,52 +4,80 @@
  */
 
 import React, {Component} from 'react';
-import {View, TextInput,StyleSheet} from 'react-native';
-import {
-  TextField,
-  FilledTextField,
-  OutlinedTextField,
-} from 'react-native-material-textfield';
- import * as colors from '../../assets/colors/colors';
+import {View, StyleSheet} from 'react-native';
+import * as colors from '../../assets/colors/colors';
+import {TextInput} from 'react-native-paper';
+import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import Feather from 'react-native-vector-icons/Feather';
 
-/**
- * _TextInput class
- * @function
- */
-const _TextInput = props => {
-  return (
-    <View style={[styles.container, props.container]}>
-      <TextField
-        style={[{color: Color.Grey}, styles.inputBox, props.style]}
-        label={props.label}
-        onChangeText={props.onChangeText}
-        keyboardType={props.keyboardType}
-        maxLength={props.maxLength}
-        labelFontSize={15}
-        fontSize={20}
-        activeLineWidth={1}
-        tintColor={
-          colors.blue
-        }
-        keyboardShouldPersistTaps={true}
-        error={props.error}
-        value={props.value}
-        editable={props.editable != undefined ? props.editable : true}
-        onBlur={props.onBlur != undefined ? props.onBlur : null}
-        onKeyDown={props.onKeyDown}
-      />
-    </View>
-  );
-};
+class _TextInput extends Component {
+  componentDidMount() {
+    if (this.props.onRef != null) {
+      this.props.onRef(this);
+    }
+  }
+
+  onSubmitEditing() {
+    this.props.onSubmitEditing();
+  }
+
+  focus() {
+    this.textInput.focus();
+  }
+  render() {
+    const props = this.props;
+    return (
+      <View style={[styles.container, props.container]}>
+        <Feather
+          name={props.iconName}
+          size={25}
+          color={colors.blue}
+          style={{marginRight: '2%'}}
+        />
+        <TextInput
+          style={[
+            {color: colors.grey, backgroundColor: colors.white},
+            styles.inputBox,
+            props.style,
+          ]}
+          label={props.label}
+          onChangeText={props.onChangeText}
+          keyboardType={props.keyboardType}
+          fontSize={20}
+          error={props.error}
+          value={props.value}
+          editable={props.editable != undefined ? props.editable : true}
+          onBlur={props.onBlur != undefined ? props.onBlur : null}
+          onKeyDown={props.onKeyDown}
+          theme={{
+            colors: {
+              placeholder: colors.grey,
+              text: colors.blue,
+              primary: colors.blue,
+              underlineColor: colors.grey,
+            },
+          }}
+          ref={input => (this.textInput = input)}
+          onSubmitEditing={this.onSubmitEditing.bind(this)}
+          secureTextEntry={props.secureTextEntry} 
+        />
+      </View>
+    );
+  }
+}
 export default _TextInput;
 
-const styles= StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
-    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 5,
   },
   inputBox: {
-    width: '100%',
+    width: '85%',
     fontSize: 20,
     paddingHorizontal: 5,
+    fontFamily: 'Muli-regular',
   },
 });
